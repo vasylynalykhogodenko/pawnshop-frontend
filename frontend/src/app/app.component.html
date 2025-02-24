@@ -1,0 +1,8 @@
+<h1>Pawnshop Management System</h1>
+<nav>
+    <a routerLink="/client">Clients</a>
+    <a routerLink="/pawnTransaction">Pawn Transactions</a>
+    <a routerLink="/itemCategory">Item Categories</a>
+    <button *ngIf="isLoggedIn()" (click)="onSignOut()">Sign Out</button>
+</nav>
+<router-outlet></router-outlet>

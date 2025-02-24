@@ -1,0 +1,50 @@
+<div class="form-container">
+    <h2>Edit Client</h2>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+
+    <form *ngIf="!isLoading" [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Middle Name</mat-label>
+        <input matInput formControlName="middleName">
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Passport Number</mat-label>
+        <input matInput formControlName="passportNumber" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Passport Series</mat-label>
+        <input matInput formControlName="passportSeries" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Passport Issue Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="passportIssueDate" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  
+      <div class="form-actions">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!clientForm.valid">
+          Update Client
+        </button>
+        <button mat-button type="button" color="warn" (click)="onDelete()">
+          Delete
+        </button>
+        <button mat-button type="button" (click)="cancel()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>

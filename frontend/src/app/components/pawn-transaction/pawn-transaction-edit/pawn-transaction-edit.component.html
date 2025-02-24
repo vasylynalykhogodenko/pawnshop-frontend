@@ -1,0 +1,96 @@
+<div class="form-container">
+    <h2>Edit Pawn Transaction</h2>
+
+    <mat-spinner *ngIf="isLoading" diameter="40" class="loading-spinner"></mat-spinner>
+
+    <form *ngIf="!isLoading" [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Client</mat-label>
+        <mat-select formControlName="client" required>
+          <mat-option *ngFor="let client of clients" [value]="client._id">
+            {{client.firstName}} {{client.lastName}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="transactionForm.get('client')?.hasError('required')">
+          Client is required
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Item Category</mat-label>
+        <mat-select formControlName="itemCategory" required>
+          <mat-option *ngFor="let category of itemCategories" [value]="category._id">
+            {{category.categoryName}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="transactionForm.get('itemCategory')?.hasError('required')">
+          Item category is required
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Item Description</mat-label>
+        <textarea matInput formControlName="itemDescription" required rows="3"></textarea>
+        <mat-error *ngIf="transactionForm.get('itemDescription')?.hasError('required')">
+          Item description is required
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Pawn Date</mat-label>
+        <input matInput [matDatepicker]="pawnPicker" formControlName="pawnDate" required>
+        <mat-datepicker-toggle matSuffix [for]="pawnPicker"></mat-datepicker-toggle>
+        <mat-datepicker #pawnPicker></mat-datepicker>
+        <mat-error *ngIf="transactionForm.get('pawnDate')?.hasError('required')">
+          Pawn date is required
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Return Date</mat-label>
+        <input matInput [matDatepicker]="returnPicker" formControlName="returnDate" required>
+        <mat-datepicker-toggle matSuffix [for]="returnPicker"></mat-datepicker-toggle>
+        <mat-datepicker #returnPicker></mat-datepicker>
+        <mat-error *ngIf="transactionForm.get('returnDate')?.hasError('required')">
+          Return date is required
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Amount</mat-label>
+        <input matInput type="number" formControlName="amount" required min="0">
+        <mat-error *ngIf="transactionForm.get('amount')?.hasError('required')">
+          Amount is required
+        </mat-error>
+        <mat-error *ngIf="transactionForm.get('amount')?.hasError('min')">
+          Amount must be greater than 0
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Commission (%)</mat-label>
+        <input matInput type="number" formControlName="commission" required min="0" max="100">
+        <mat-error *ngIf="transactionForm.get('commission')?.hasError('required')">
+          Commission is required
+        </mat-error>
+        <mat-error *ngIf="transactionForm.get('commission')?.hasError('min') || 
+                          transactionForm.get('commission')?.hasError('max')">
+          Commission must be between 0 and 100
+        </mat-error>
+      </mat-form-field>
+  
+      <div class="form-actions">
+        <button mat-raised-button color="warn" type="button" (click)="onDelete()" [disabled]="isLoading">
+          Delete
+        </button>
+        <div class="action-buttons">
+          <button mat-button type="button" (click)="cancel()" [disabled]="isLoading">
+            Cancel
+          </button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!transactionForm.valid || isLoading">
+            Update Transaction
+          </button>
+        </div>
+      </div>
+    </form>
+</div>

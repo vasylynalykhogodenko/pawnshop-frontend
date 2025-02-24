@@ -1,0 +1,31 @@
+<div class="form-container">
+    <h2>Add New Item Category</h2>
+
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Category Name</mat-label>
+        <input matInput formControlName="categoryName" required>
+        <mat-error *ngIf="categoryForm.get('categoryName')?.hasError('required')">
+          Name is required
+        </mat-error>
+        <mat-error *ngIf="categoryForm.get('categoryName')?.hasError('minlength')">
+          Name must be at least 2 characters long
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Notes</mat-label>
+        <textarea matInput formControlName="notes" rows="3"></textarea>
+      </mat-form-field>
+
+      <div class="form-actions">
+        <button mat-button type="button" (click)="cancel()" [disabled]="isLoading">
+          Cancel
+        </button>
+        <button mat-raised-button color="primary" type="submit" 
+                [disabled]="!categoryForm.valid || isLoading">
+          {{isLoading ? 'Creating...' : 'Create Category'}}
+        </button>
+      </div>
+    </form>
+  </div>

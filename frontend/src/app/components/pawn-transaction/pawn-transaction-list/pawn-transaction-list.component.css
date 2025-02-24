@@ -1,0 +1,49 @@
+.transaction-list-container {
+    padding: 20px 0px;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+}
+
+button {
+    margin-right: 20px;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-column-actions {
+    width: 80px;
+    text-align: center;
+}
+
+.mat-column-amount,
+.mat-column-commission {
+    text-align: right;
+    padding-right: 24px;
+}
+
+.mat-cell {
+    padding: 8px 16px;
+}
+
+mat-spinner {
+    margin: 20px auto;
+}
+
+.mat-column-itemDescription {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -1,0 +1,32 @@
+.client-list-container {
+    padding: 20px;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px 20px;
+}
+
+.button-add-client {
+    margin: 20px;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-column-actions {
+    width: 80px;
+    text-align: center;
+}
+
+mat-spinner {
+    margin: 20px auto;
+}
